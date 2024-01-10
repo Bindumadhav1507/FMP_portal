@@ -1,0 +1,65 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<style>
+  /* Section 1: Image on the right */
+  .about-section .col-lg-6:nth-child(1) img {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.349); /* Adjust the values as needed */
+      border-radius: 10px; /* Optional: Add rounded corners for a softer look */
+  }
+
+  /* Section 2: Image on the left */
+  .about-section .col-lg-6:nth-child(2) img {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.349); /* Adjust the values as needed */
+      border-radius: 10px; /* Optional: Add rounded corners for a softer look */
+  }
+</style>
+
+<main id="main">
+
+      <!-- Section 1: Image on the right -->
+      <section class="about-section" data-aos="fade-up">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="{% static 'images/right_image.jpg' %}" alt="Right Image" class="img-fluid ">
+                </div>
+                <div class="col-lg-6">
+                    <div class="section-title">
+                        <h2>About ADIA</h2>
+                    </div>
+                    <p>
+                        The Abu Dhabi Investment Authority (ADIA) is a sovereign wealth fund established by the Emirate of Abu Dhabi, located in the United Arab Emirates.
+                        Founded with the primary objective of managing and investing funds on behalf of the Government of Abu Dhabi, ADIA plays a crucial role in diversifying and maximizing the emirate's financial resources.
+                    </p>
+                    <!-- Add more paragraphs or content as needed -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Image on the left -->
+    <section class="about-section" data-aos="fade-up">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-title">
+                        <h2>Our Mission</h2>
+                    </div>
+                    <p>
+                        As a sovereign wealth fund, ADIA engages in a wide range of investment activities globally.
+                        Its mandate includes the strategic allocation of assets across various sectors, geographies, and asset classes.
+                        The fund operates with a long-term perspective, aiming to generate sustainable returns to support the economic development and future needs of Abu Dhabi.
+                    </p>
+                    <!-- Add more paragraphs or content as needed -->
+                </div>
+                <div class="col-lg-6">
+                    <img src="{% static 'images/left_image.jpg' %}" alt="Left Image" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+   
+</main><!-- End #main --
+{% endblock %}

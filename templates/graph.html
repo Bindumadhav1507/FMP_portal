@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Animated Charts</title>
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include CSS for styling -->
+    <style>
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        canvas {
+            max-width: 400px; /* Set a maximum width for the charts */
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Side-by-Side Chart Containers -->
+<div class="chart-container">
+    <!-- Animated Bar Chart -->
+    <canvas id="animatedBarChart" width="300" height="150"></canvas>
+    
+    <!-- Animated Doughnut Chart -->
+    <canvas id="animatedDoughnutChart" width="300" height="150"></canvas>
+</div>
+
+<script>
+    // Random data generation function
+    function generateRandomData(length) {
+        return Array.from({ length }, () => Math.floor(Math.random() * 100));
+    }
+
+    // Animated Bar Chart
+    var ctxBar = document.getElementById('animatedBarChart').getContext('2d');
+    var dataBar = {
+        labels: ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
+        datasets: [{
+            label: 'Random Data',
+            data: generateRandomData(5),
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1,
+            animation: {
+                duration: 2000, // Set the animation duration in milliseconds
+                onComplete: function(animation) {
+                    // Ensure the animation is complete
+                    console.log('Bar Chart Animation complete');
+                }
+            }
+        }]
+    };
+    var optionsBar = {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+    };
+    var barChart = new Chart(ctxBar, {
+        type: 'bar',
+        data: dataBar,
+        options: optionsBar
+    });
+
+    // Animated Doughnut Chart
+    var ctxDoughnut = document.getElementById('animatedDoughnutChart').getContext('2d');
+    var dataDoughnut = {
+        labels: ['Data 1', 'Data 2', 'Data 3', 'Data 4', 'Data 5'],
+        datasets: [{
+            data: generateRandomData(5),
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)'
+            ],
+            hoverBackgroundColor: [
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 206, 86, 0.8)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(153, 102, 255, 0.8)'
+            ],
+            animation: {
+                animateRotate: true,
+                animateScale: true,
+                duration: 2000, // Set the animation duration in milliseconds
+                onComplete: function(animation) {
+                    // Ensure the animation is complete
+                    console.log('Doughnut Chart Animation complete');
+                }
+            }
+        }]
+    };
+    var optionsDoughnut = {
+        cutoutPercentage: 60,
+    };
+    var doughnutChart = new Chart(ctxDoughnut, {
+        type: 'doughnut',
+        data: dataDoughnut,
+        options: optionsDoughnut
+    });
+</script>
+
+</body>
+</html>

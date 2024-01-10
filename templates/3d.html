@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Pie Chart with Three.js</title>
+    <!-- Include the latest version of Three.js -->
+    <script src="https://threejs.org/build/three.js"></script>
+</head>
+<body>
+
+<!-- 3D Pie Chart Container -->
+<div id="pie3d"></div>
+
+<script>
+    // Function to create a 3D pie chart
+    function createPieChart() {
+        // Set up the scene, camera, and renderer
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('pie3d').appendChild(renderer.domElement);
+
+        // Create a 3D pie chart using spheres
+        var data = [10, 20, 30, 40, 50];
+        var total = data.reduce((acc, val) => acc + val, 0);
+        var startAngle = 0;
+
+        for (var i = 0; i < data.length; i++) {
+            var angle = (data[i] / total) * Math.PI * 2;
+            var geometry = new THREE.SphereGeometry(1, 32, 32, startAngle, startAngle + angle);
+            var material = new THREE.MeshBasicMaterial({ color: getRandomColor(), side: THREE.DoubleSide });
+            var sphere = new THREE.Mesh(geometry, material);
+
+            scene.add(sphere);
+
+            // Increment the starting angle for the next slice
+            startAngle += angle;
+        }
+
+        // Set the camera position
+        camera.position.z = 5;
+
+        // Render the scene
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    }
+
+    // Helper function to generate random colors
+    function getRandomColor() {
+        return '#' + Math.floor(Math.random()*16777215).toString(16);
+    }
+
+    // Call the function to create the 3D pie chart
+    createPieChart();
+</script>
+
+</body>
+</html>

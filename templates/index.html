@@ -1,0 +1,260 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ARAVIND</title>
+    
+        <!-- Favicons -->
+        <link href="{% static 'images/admp.png' %}" rel="icon">
+        
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+    
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+        <!-- Bootstrap JS and Popper.js -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+        <!-- Vendor CSS Files -->
+        <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    
+        <!-- Template Main CSS File -->
+        <link href="{% static 'css/style.css'%}" rel="stylesheet">
+    
+        <!-- Your custom styles or additional scripts can be added here -->
+    
+    </head>
+<body>
+     
+    <div id="loader-container">
+        <div id="loader"></div>
+    </div>
+
+     <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex justify-content-between align-items-center">
+
+      <div class="logo d-flex justify-content-between">
+        <a href="{% url 'home' %}"><img src="{% static 'images/admp.png' %}" alt="" class="img-fluid"></a>
+        <h1 class="text-light"><a href="{% url 'home' %}"><span>ARAVIND</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class=" " href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+         
+          <li class="nav-item dropdown" id="productDropdown">
+            <a id="productLink" class="nav-link"   href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Products
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="myDropdown">
+                
+                {% for product in context.products %}
+                    <a class="dropdown-item" href="#">{{ product.0 }}</a>
+                {% endfor %}
+            </div>
+        
+        </li>
+        
+          <li><a href="{% url 'support_us' %}">Support</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header>
+  <!-- End Header -->
+        
+      <main>
+        <div class="container-fluid p-0 m-0">
+             {% block content %}{% endblock %}
+        </div> 
+      </main>
+
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+
+        <div class="container p-0">
+          
+            <div class="copyright">
+              &copy; Copyright <strong><span>ARAVIND</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+              <!-- All the links in the footer should remain intact. -->
+              <!-- You can delete the links only if you purchased the pro version. -->
+              <!-- Licensing information: https://bootstrapmade.com/license/ -->
+              <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/ -->
+              <!-- Designed by <a href="https://bootstrapmade.com/">Bootstrap</a> -->
+            </div>
+        </div>
+      </footer>
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/waypoints/noframework.waypoints.js' %}"></script>
+
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+    
+            // Function to check the current URL and toggle the "Products" link visibility
+            function toggleProductsLink() {
+                // Get the current URL
+                var currentUrl = window.location.pathname;
+    
+                // List of URLs where "Products" link should be hidden
+                var excludedUrls = [
+                    "/",
+                    "/home/",
+                    "/about/",
+                    "/contact_us/",
+                    "/support_us/"
+                ];
+    
+                // Check if the current URL is in the excluded list
+                var hideProductsLink = excludedUrls.includes(currentUrl);
+    
+                // Toggle the visibility of the "Products" link
+                $('#productLink').toggle(!hideProductsLink);
+            }
+    
+            // Initial check when the page loads
+            toggleProductsLink();
+    
+            // Check again whenever the hash changes (e.g., when navigating within a single-page application)
+            $(window).on('hashchange', function () {
+                toggleProductsLink();
+            });
+    
+            // Show dropdown on hover with smooth fade
+            $('#productDropdown').hover(
+                function () {
+                    $(this).find('.dropdown-menu').stop(true, true).fadeIn(200);
+                },
+                function () {
+                    $(this).find('.dropdown-menu').stop(true, true).fadeOut(200);
+                }
+            );
+    
+            $('.option').on('click', function () {
+                var iconText = $(this).closest('.rounded-icon').find('.icon-text').text();
+                var optionValue = $(this).text();
+                // AJAX request here
+    
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://127.0.0.1:8000/getdata/',
+                    data: { Asset: iconText, option: optionValue },
+                    success: function (response) {
+    
+                        console.log(response.message);
+                        // Assuming response is an array
+                        var myArray = response.data;
+    
+                        // Generate dropdown items dynamically based on the data
+                        var dropdown = $('#myDropdown');
+                        dropdown.empty();
+                        myArray.forEach(function (item) {
+                            var option = $('<a>').addClass('dropdown-item').attr('href', '#').text(item);
+                            dropdown.append(option);
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error)
+                        console.error(error);
+                    }
+                });
+    
+                $(this).closest('.dropdown-options').hide();
+            });
+    
+           
+            $('.rounded-icon').on({
+                mouseenter: function () {
+                    $(this).find('.dropdown-options').show();
+                },
+                mouseleave: function () {
+                    $(this).find('.dropdown-options').hide();
+                }
+            });
+        
+           // Replace the entire $('#myDropdown').on('click', '.dropdown-item', function () { block with the following:
+
+            $('#myDropdown').on('click', '.dropdown-item', function () {
+                var selectedFile = $(this).text();
+
+                // Get the content of the main container
+                var content = $('#main').html();  // Change '#main' to the actual ID of the container with content
+
+                // Create a Blob containing the HTML content
+                var blob = new Blob([content], { type: "application/pdf" });
+
+                // Create a link element
+                var link = document.createElement("a");
+
+                // Set the download attribute with the desired file name
+                link.download = selectedFile + ".pdf";
+
+                // Create a URL for the Blob and set it as the link's href
+                link.href = window.URL.createObjectURL(blob);
+
+                // Append the link to the body
+                document.body.appendChild(link);
+
+                // Trigger a click on the link to initiate the download
+                link.click();
+
+                // Remove the link from the DOM
+                document.body.removeChild(link);
+            });
+            
+            // Function to show the loader
+        function showLoader() {
+            $('#loader-container').show();
+        }
+
+        // Function to hide the loader
+        function hideLoader() {
+            $('#loader-container').hide();
+        }
+
+        $(document).ready(function () {
+            // Example: Show loader for 3 seconds on page load
+            showLoader();
+            setTimeout(function () {
+                hideLoader();
+            }, 700);
+        });
+
+
+        });
+    </script>
+    
+</body>
+</html>

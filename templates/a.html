@@ -1,0 +1,158 @@
+{% load static %}
+<div class="container-fluid d-flex align-items-center justify-content-center min-vh-100">
+  <div class="container d-flex justify-content-around">
+      <div class="rounded-icon icon1">
+          <span class="icon-text">FI</span>
+          <div class="dropdown-options">
+            <div class="option" id="capula"><a href="{% url 'content' category='FI' option_name='capula' %}" class="text-decoration-none">Capula</a></div>
+            <div class="option" id="pimco"><a href="{% url 'content' category='FI' option_name='pimco' %}" class="text-decoration-none">Pimco</a></div>
+            <div class="option" id="invesco"><a href="{% url 'content' category='FI' option_name='invesco' %}" class="text-decoration-none">Invesco</a></div>
+          </div>
+      </div>
+      <div class="rounded-icon icon2">
+          <span class="icon-text">EQ</span>
+          <div class="dropdown-options">
+              <div class="option"><a href="{% url 'content' category='EQ' option_name='Wellington' %}" class="text-decoration-none">Wellington</a></div>
+              <div class="option"><a href="{% url 'content' category='EQ' option_name='Henderson' %}" class="text-decoration-none">Henderson</a></div>
+          </div>
+      </div>
+      <div class="rounded-icon icon3">
+          <span class="icon-text">AID</span>
+          <div class="dropdown-options">
+              <div class="option">Option 1</div>
+              <div class="option">Option 2</div>
+              <div class="option">Option 3</div>
+             
+          </div>
+      </div>
+      
+  </div>
+</div> 
+
+
+<select id="fileDropdown">
+    <option value="file1.txt">File 1</option>
+    <option value="file2.txt">File 2</option>
+    <!-- Add more options as needed -->
+</select>
+<script src="{% static 'js/jquery.js' %}" ></script>
+<script>
+document.getElementById('fileDropdown').addEventListener('change', function() {
+    var selectedFile = this.value;
+    var fileData = "Sample file content";  // Replace with actual file content or fetch from server
+
+    var blob = new Blob([fileData], { type: 'application/octet-stream' });
+    var url = URL.createObjectURL(blob);
+
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = selectedFile;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+});
+</script>
+
+
+
+<nav class="navbar navbar-expand-lg text-bold navbar-light">
+    <a class="navbar-brand" href="{% url 'home' %}">ADIA</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link"  style="color: black;" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  style="color: black;" href="{% url 'about' %}">About</a>
+            </li>
+  
+            <li class="nav-item dropdown" id="productDropdown">
+                <a id="productLink" class="nav-link"  style="color: black;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Products
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="myDropdown">
+                    
+                    {% for product in context.products %}
+                        <a class="dropdown-item" href="#">{{ product.0 }}</a>
+                    {% endfor %}
+                </div>
+            
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  style="color: black;" href="{% url 'support_us' %}">Support</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  style="color: black;" href="#contact">Contact Us</a>
+           </li>
+           
+        </ul>
+    </div>
+  </nav>
+
+
+
+
+
+  <aside class="sidebar ">
+    <div class="toggle d-flex">
+        <a href="#" class="burger js-menu-toggle mr-3" data-toggle="collapse" data-target="#main-navbar">
+            <span></span>
+        </a>
+        
+    </div>
+    <div class="side-inner">
+        <div class="nav-menu">
+            <ul class="list-unstyled components mb-5">
+            
+                <li class="active">
+                <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">FI</a>
+                </li>
+                <ul class="collapse list-unstyled" id="pageSubmenu2">
+                    <li class="">
+                            <a href="{% url 'content' category='FI' option_name='capula' %}" class="text-decoration-none">
+                            <span class="fa fa-chevron-right mr-2"></span>Capula
+                            </a>
+                    <li>
+                            <a href="{% url 'content' category='FI' option_name='pimco' %}" class="text-decoration-none">
+                            <span class="fa fa-chevron-right mr-2"></span>Pimco
+                            </a>
+                    </li>
+                    <li>
+                            <a href="{% url 'content' category='FI' option_name='Invesco' %}" class="text-decoration-none">
+                            <span class="fa fa-chevron-right mr-2"></span>Invesco
+                            </a>
+                    </li>
+                
+                </ul>
+                </li>
+
+                <li>
+                <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">EQ</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu3">
+                    <li><a href="{% url 'content' category='EQ' option_name='Wellington' %}" class="text-decoration-none"><span class="fa fa-chevron-right mr-2"></span>Wellington</a></li>
+                    <li><a href="{% url 'content' category='EQ' option_name='Henderson' %}" class="text-decoration-none"><span class="fa fa-chevron-right mr-2"></span>Henderson</a></li>
+                </ul>
+                </li>
+
+                <li>
+                <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">AID</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu4">
+                    <li><a href="#" class="text-decoration-none"><span class="fa fa-chevron-right mr-2"></span>Option 1</a></li>
+                    <li><a href="#" class="text-decoration-none"><span class="fa fa-chevron-right mr-2"></span>Option 2</a></li>
+                    <li><a href="#" class="text-decoration-none"><span class="fa fa-chevron-right mr-2"></span>Option 3</a></li>
+                    
+                </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </aside>
+  
+
+
+
+/* deep dropdown*

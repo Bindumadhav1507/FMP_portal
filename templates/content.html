@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<main  id = "main">
+                  <!-- ======= Our Skills Section ======= -->
+<section class="skills" data-aos="fade-up">
+  <div class="container">
+    <div class="section-title text-center mb-5">
+      <img src="{% static context.img_path %}" alt="{{context.img_path}}" class="img-fluid ">
+      <p class="mt-4" data-aos="fade-up" style="color: #2c3e50; font-size: 18px;">{{context.page_content}}</p>
+    </div>
+  </div>
+</section><!-- End Our Skills Section -->
+
+<div class="container my-4">
+  <div class="table-responsive">
+    <table class="table table-striped table-hover rounded shadow">
+      <thead class="bg-primary text-white">
+        <tr>
+          <th scope="col">Fund Manager</th>
+          <th scope="col">Funding</th>
+          <th scope="col">Domicile</th>
+          <th scope="col">Initial Trade</th>
+          <th scope="col">Swaps Included</th>
+          <th scope="col">Cleared</th>
+          <th scope="col">Bi Lateral</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in context.data %}
+          <tr data-href="#">
+            <td>{{ data.0 }}</td>
+            <td>{{ data.1 }}</td>
+            <td>{{ data.2 }}</td>
+            <td>{{ data.3 }}</td>
+            <td>{{ data.4 }}</td>
+            <td>{{ data.5 }}</td>
+            <td>{{ data.6 }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+</main>
+
+
+<style>
+  .table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+  }
+ 
+  
+</style>
+
+{% endblock %}

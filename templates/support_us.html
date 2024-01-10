@@ -1,0 +1,78 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<style>
+  /* Support Section */
+  .support-section {
+    background-color: #f8f9fa;
+    padding: 80px 0;
+  }
+
+  .support-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .support-title {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .support-card {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  }
+
+  .support-card:hover {
+    transform: translateY(-5px);
+    border-color: #007bff;
+  }
+
+  .support-card h3 {
+    color: #007bff;
+  }
+
+  .support-card p {
+    color: #6c757d;
+  }
+</style>
+
+<main id="main">
+  <!-- Support Section -->
+  <section class="support-section" data-aos="fade-up">
+    <div class="container support-container">
+      <div class="support-title">
+        <h2>Support</h2>
+        <p>Have questions or need assistance? We're here to help!</p>
+      </div>
+
+      <div class="row">
+        <!-- Support Card 1 -->
+        <div class="col-md-6">
+          <div class="support-card">
+            <h3>Contact Us</h3>
+            <p>If you have any inquiries or need assistance, feel free to contact us. We're available to help you.</p>
+          </div>
+        </div>
+
+        <!-- Support Card 2 -->
+        <div class="col-md-6">
+          <div class="support-card">
+            <h3>FAQs</h3>
+            <p>Check our Frequently Asked Questions for quick answers to common queries about ADIA and our services.</p>
+          </div>
+        </div>
+
+        <!-- Add more support cards as needed -->
+
+      </div>
+    </div>
+  </section>
+</main><!-- End #main -->
+
+{% endblock %}
