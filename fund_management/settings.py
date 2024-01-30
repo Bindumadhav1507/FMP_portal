@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-##=^z+6oubvwy7l^hvg2rmqg!38%yx*lf*ky1!v=4nfuh^lqi6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # APPEND_SLASH = False
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['aravindfm.cloud','54.206.25.28']
 
 
 # Application definition
